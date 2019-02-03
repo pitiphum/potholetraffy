@@ -1,8 +1,8 @@
 import cv2 as cv
 import numpy
 
-
-classNames = {0: 'background',
+classNames = {1: 'pothole', 2: 'patch', 3: 'longCrack', 4: 'lateralCrack', 5: 'alligatorCrack', 6: 'speedBump'}
+classNamesold = {0: 'background',
               1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 5: 'airplane', 6: 'bus',
               7: 'train', 8: 'truck', 9: 'boat', 10: 'traffic light', 11: 'fire hydrant',
               13: 'stop sign', 14: 'parking meter', 15: 'bench', 16: 'bird', 17: 'cat',
@@ -24,8 +24,8 @@ classNames = {0: 'background',
 class Detector:
     def __init__(self):
         global cvNet
-        cvNet = cv.dnn.readNetFromTensorflow('model/frozen_inference_graph.pb',
-                                             'model/ssd_mobilenet_v1_coco_2017_11_17.pbtxt')
+        cvNet = cv.dnn.readNetFromTensorflow('model/frozen_inference_graph_for_roadsurface.pb',
+                                             'model/faster_rcnn_inception_v2_coco_2018_01_28.pbtxt')
 
     def detectObject(self, imName):
         img = cv.cvtColor(numpy.array(imName), cv.COLOR_BGR2RGB)
